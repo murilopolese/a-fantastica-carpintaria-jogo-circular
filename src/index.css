@@ -1,0 +1,6 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.process-info .card {
+  width: 100%;
+  height: 100%;
+}
