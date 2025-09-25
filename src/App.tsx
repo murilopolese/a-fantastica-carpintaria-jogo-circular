@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 
+
 type Container = {
   capacity: number,
   quantity: number
@@ -42,8 +43,86 @@ type State = {
   // Pending project
   project: Project,
   // Score
-  developmentPoints: number
+  developmentPoints: number,
+  upgrades: Upgrade[]
 }
+
+type Upgrade = {
+  title: string,
+  description: string,
+  level: number,
+  effect: (state: State) => State
+}
+
+function _donationAmount(state: State) {
+  let newState = { ...state }
+  newState.donationAmount *= 2
+  return newState
+}
+function _collectionAmount(state: State) {
+  let newState = { ...state }
+  newState.collectionAmount *= 2
+  return newState
+}
+function _collectorCapacity(state: State) {
+  let newState = { ...state }
+  newState.collectors.capacity *= 2
+  return newState
+}
+function _cleaningCapacity(state: State) {
+  let newState = { ...state }
+  newState.cleaned.capacity *= 2
+  return newState
+}
+function _materialCapacity(state: State) {
+  let newState = { ...state }
+  newState.material.capacity *= 2
+  return newState
+}
+function _washingCapacity(state: State) {
+  let newState = { ...state }
+  newState.washingMachine.capacity *= 2
+  return newState
+}
+function _washingDuration(state: State) {
+  let newState = { ...state }
+  newState.washingMachine.waitingTime *= 0.8
+  return newState
+}
+function _shredingCapacity(state: State) {
+  let newState = { ...state }
+  newState.shredingMachine.capacity *= 2
+  return newState
+}
+function _shredingDuration(state: State) {
+  let newState = { ...state }
+  newState.shredingMachine.waitingTime *= 0.8
+  return newState
+}
+function _extrudingDuration(state: State) {
+  let newState = { ...state }
+  newState.extrudingMachine.waitingTime *= 0.8
+  return newState
+}
+function _pressingDuration(state: State) {
+  let newState = { ...state }
+  newState.pressingMachine.waitingTime *= 0.8
+  return newState
+}
+
+const defaultUpgrades: Upgrade[] = [
+  { title: "Campanha na escola",  description: "Aumenta número de doações por dia.", effect: _donationAmount, level: 1 },
+  { title: "Mostra Circular",  description: "Aumenta o número de tampinhas coletadas por clique.", effect: _collectionAmount, level: 1 },
+  { title: "Mais coletores pela cidade",  description: "Aumenta o número máximo de tampinhas coletadas que podem ser armazenadas.", effect: _collectorCapacity, level: 1 },
+  { title: "Galpão de armazenamento",  description: "Aumenta o número máximo de tampinhas limpas que podem ser armazenadas.", effect: _cleaningCapacity, level: 1 },
+  { title: "Estante de material triturado",  description: "Aumenta o número máximo de tampinhas trituradas que podem ser armazenadas.", effect: _materialCapacity, level: 1 },
+  { title: "Aumentar máquina de lavar tampinhas",  description: "Aumenta o número máximo de tampinhas lavadas por ciclo.", effect: _washingCapacity, level: 1 },
+  { title: "Máquina de lavar tampinhas mais rápidas",  description: "Diminui o tempo gasto por ciclo de lavagem.", effect: _washingDuration, level: 1 },
+  { title: "Aumentar máquina de triturar tampinhas",  description: "Aumenta o número máximo de trituradas lavadas por ciclo.", effect: _shredingCapacity, level: 1 },
+  { title: "Máquina de triturar tampinhas mais rápidas",  description: "Diminui o tempo gasto por ciclo da máquina de triturar.", effect: _shredingDuration, level: 1 },
+  { title: "Máquina de fazer ripas mais rápidas",  description: "Diminui o tempo gasto para fazer uma ripa de madeira plástica.", effect: _extrudingDuration, level: 1 },
+  { title: "Máquina de fazer placas mais rápidas",  description: "Diminui o tempo gasto para fazer uma placa de madeira plástica.", effect: _pressingDuration, level: 1 },
+]
 
 const initialState: State = {
   donationAmount: 1,
@@ -104,12 +183,12 @@ const initialState: State = {
     deadlineAt: Date.now() + (30*6 * 1000),
   },
 
-  developmentPoints: 0
-
+  developmentPoints: 0,
+  upgrades: defaultUpgrades
 }
 
 function donation(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   newState.collectors.quantity = Math.min(
     state.collectors.capacity,
     newState.collectors.quantity + newState.donationAmount
@@ -118,7 +197,7 @@ function donation(state: State): State {
 }
 
 function collect(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   newState.collectors.quantity = Math.min(
     state.collectors.capacity,
     newState.collectors.quantity + newState.collectionAmount
@@ -127,7 +206,7 @@ function collect(state: State): State {
 }
 
 function wash(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   const batchSize = Math.min(
     newState.collectors.quantity,
     newState.washingMachine.capacity
@@ -140,7 +219,7 @@ function wash(state: State): State {
 }
 
 function shred(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   const batchSize = Math.min(
     newState.cleaned.quantity,
     newState.shredingMachine.capacity
@@ -153,7 +232,7 @@ function shred(state: State): State {
 }
 
 function produceBeam(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   if (newState.material.quantity >= state.extrudingMachine.capacity) {
     newState.material.quantity -= state.extrudingMachine.capacity
     newState.extrudingMachine.waitingUntil = Date.now() + (newState.extrudingMachine.waitingTime)
@@ -163,7 +242,7 @@ function produceBeam(state: State): State {
 }
 
 function produceSheet(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   if (newState.material.quantity >= state.pressingMachine.capacity)
   newState.material.quantity -= state.pressingMachine.capacity
   newState.pressingMachine.waitingUntil = Date.now() + (newState.pressingMachine.waitingTime)
@@ -172,7 +251,7 @@ function produceSheet(state: State): State {
 }
 
 function updateProcesses(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   const time = Date.now()
 
   if (state.washingMachine.active && state.washingMachine.waitingUntil < time) {
@@ -204,15 +283,13 @@ function updateProcesses(state: State): State {
   return newState
 }
 
-const canDeliverProject = (s: State): boolean => s.beams >= s.project.beams && s.sheets >= s.project.sheets
-
 function deliverProject(state: State): State {
-  const newState = structuredClone(state)
+  const newState = { ...state }
   if (canDeliverProject(newState)) {
     newState.beams -= newState.project.beams
     newState.sheets -= newState.project.sheets
     newState.developmentPoints += 1
-    const extraPoints = (newState.project.deadlineAt - Date.now()) / (15*1000)
+    const extraPoints = Math.max( 0, (newState.project.deadlineAt - Date.now()) / (15*1000) )
     newState.developmentPoints += extraPoints
 
     newState.project.beams *= 2
@@ -228,6 +305,20 @@ function deliverProject(state: State): State {
   }
   return newState
 }
+
+function upgrade(state: State, u: Upgrade) {
+  let newState = { ...state }
+  const v = state.upgrades.find(v => v.title === u.title)
+  if (v) {
+    newState.developmentPoints -= v.level
+    newState = v.effect(newState)
+    v.level += 1
+  }
+  return newState
+}
+
+const canDeliverProject = (s: State): boolean => s.beams >= s.project.beams && s.sheets >= s.project.sheets
+
 
 export default function App() {
   const [ state, setState ] = useState<State>(initialState)
@@ -277,6 +368,13 @@ export default function App() {
   function handleDeliverProject() {
     let newState = deliverProject(state)
     setState(newState)
+  }
+
+  function handleUpgrade(u: Upgrade) {
+    return () => {
+      let newState = upgrade(state, u)
+      setState(newState)
+    }
   }
 
 
@@ -358,7 +456,7 @@ export default function App() {
                 <div className="card">
                   <div className="card-body">
                     <p>
-                      Recebendo <strong>1</strong> doações de tampinha por dia.
+                      Recebendo <strong>{state.donationAmount}</strong> doações de tampinha por dia.
                     </p>
                     <p className="d-grid">
                       <button className="btn btn-primary" onClick={handleCollect}>COLETAR</button>
@@ -532,21 +630,27 @@ export default function App() {
             </div>
 
             {
-              (new Array(20).fill(null)).map(() => (
-                <div className="col-12">
-                  <div className="card">
-                    <div className="card-body">
-                      <h6>Nome da melhoria</h6>
-                      <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad molestiae perferendis at dicta iste, quos aliquam. Repellat, laboriosam. Vitae adipisci cum earum nihil, perferendis ipsam ratione porro officia architecto laudantium.
-                      </p>
-                      <p className="d-grid">
-                        <button disabled className="btn btn-primary">APLICAR</button>
-                      </p>
+              state.upgrades.map((upgrade: Upgrade) => {
+                return <>
+                  <div className="col-12">
+                    <div className="card">
+                      <div className="card-body">
+                        <h6>{upgrade.title} (Custo: {upgrade.level})</h6>
+                        <p>{upgrade.description}</p>
+                        <p className="d-grid">
+                          <button
+                            className="btn btn-primary"
+                            disabled={state.developmentPoints < (upgrade.level||0)}
+                            onClick={handleUpgrade(upgrade)}
+                            >
+                            APLICAR
+                          </button>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                </>
+              })
             }
 
             <div className="col-12 py-3"></div>
