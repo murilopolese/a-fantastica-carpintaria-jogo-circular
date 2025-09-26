@@ -2,7 +2,7 @@ import { RuggedButton } from "../components/pills.js"
 
 export default function Mission(state, emit) {
     const ruggedButton = RuggedButton({
-        onClick: () => emit('pushState', '#game')
+        onClick: () => emit('pushState', '#jogo')
     })
     return html`
         <div id="app" class="mission">

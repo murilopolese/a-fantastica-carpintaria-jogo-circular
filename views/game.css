@@ -7,7 +7,6 @@
 }
 
 .game .wrapper {
-    align-items: flex-end;
     gap: 40px;
     padding: 0 40px;
     width: calc( 1280px + 80px );
@@ -20,7 +19,7 @@
 
 .game .stage {
     gap: 20px;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 .game .stage.disabled {

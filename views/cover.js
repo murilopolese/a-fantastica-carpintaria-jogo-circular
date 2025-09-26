@@ -9,7 +9,7 @@ export default function Cover(state, emit) {
     `
 
     const bigButton = BigButton({
-        onClick: () => emit('pushState', '#mission')
+        onClick: () => emit('pushState', '#missao')
     })
 
     const sponsors = Sponsors()
