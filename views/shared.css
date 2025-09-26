@@ -16,13 +16,14 @@ html,
 body {
     width: 100%;
     height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 body {
     margin: 0;
     font-family: "Archivo", sans-serif;
     font-optical-sizing: auto;
-    font-smooth: always;
 }
 
 /* SHARED STYLES */
