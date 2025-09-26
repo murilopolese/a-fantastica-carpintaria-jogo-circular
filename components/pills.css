@@ -1,0 +1,123 @@
+.lettering {
+    width: 800px;
+    height: 300px;
+}
+.lettering img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.big-button {
+    /* STYLE */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    border-radius: 100px;
+    background-color: var(--red);
+    color: var(--beige);
+    font-size: 28px;
+    font-weight: 400;
+    padding: 60px;
+    transition: all 0.1s;
+}
+.big-button .bold {
+    font-weight: 900;
+}
+.big-button:hover {
+    transform: scale(1.1);
+}
+.big-button:active {
+    transform: scale(0.9);
+}
+
+.sponsors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    border-radius: 100px;
+    background-color: var(--beige);
+    padding: 40px 80px;
+    width: 660px;
+}
+.sponsors img {
+    width: 100%;
+}
+
+.rugged-button {
+    color: var(--beige);
+    font-size: 56px;
+    font-weight: 900;
+    width: fit-content;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.075s;
+}
+.rugged-button:hover {
+    transform: scale(1.1);
+}
+.rugged-button:active {
+    transform: scale(0.9);
+}
+
+.rugged-button .text {
+    background-color: var(--red);
+    padding: 20px;
+    width: 100%;
+}
+
+.rugged-button .top .semi-circle {
+    height: 65px;
+    width: 130px;
+    border-radius: 130px 130px 0 0;
+    background-color: var(--red);
+    margin-bottom: -1px;
+}
+.rugged-button .bottom .semi-circle {
+    height: 65px;
+    width: 130px;
+    border-radius: 0 0 130px 130px;
+    background-color: var(--red);
+    margin-top: -1px;
+}
+
+.game-button {
+    background-color: var(--green);
+    color: var(--beige);
+    padding: 15px 60px;
+    border-radius: 100px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    /* width: fit-content; */
+    width: 100%;
+    transition: all 0.1s;
+}
+
+
+.game-button:hover {
+    transform: scale(1.05);
+}
+.game-button:active {
+    transform: scale(0.95);
+}
+
+.progress {
+    border: solid 4px var(--green);
+    height: 40px;
+    width: 100%;
+    border-radius: 40px;
+    overflow: hidden;
+}
+.progress .value {
+    height: 100%;
+    background: var(--green);
+    transition: width 0.1s;
+}
