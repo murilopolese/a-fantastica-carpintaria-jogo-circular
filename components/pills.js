@@ -48,10 +48,11 @@ function RuggedButton(props) {
 function GameButton(props) {
     const {
         onClick = () => false,
-        children = [html`<span></span>`]
+        children = [html`<span></span>`],
+        disabled = false
     } = props || {}
     return html`
-        <button class="game-button" onclick=${onClick}>
+        <button disabled=${disabled} class="game-button" onclick=${onClick}>
             <span class="column">
                 ${children}
             </span>
@@ -61,7 +62,7 @@ function GameButton(props) {
 
 function Progress(props) {
     const {
-        value = 50
+        value = 0
     } = props || {}
     return html`
         <div class="progress">

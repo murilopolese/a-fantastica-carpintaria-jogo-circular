@@ -63,3 +63,7 @@ button {
     flex-grow: 1;
 }
 
+button[disabled] {
+    pointer-events: none;
+    opacity: 0.2;
+}
