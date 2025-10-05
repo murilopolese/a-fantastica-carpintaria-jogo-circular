@@ -33,7 +33,7 @@ export default function Game(state, emit) {
 
     const extrudeButton = GameButton({
         onClick: () => emit('extrude'),
-        disabled: state.trituradora.done < state.extrusora.capacity,
+        disabled: state.extrusora.timer != 0 || state.trituradora.done < state.extrusora.capacity,
         children: [
             html`<span>Transformar ${state.extrusora.capacity}</span>`,
             html`<span>tampinhas em ripa</span>`

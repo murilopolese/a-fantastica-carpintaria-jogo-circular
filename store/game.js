@@ -37,11 +37,11 @@ export default function store(state, emitter) {
         }
     ]
     state.currentMission = 0
+    state.coins = 0
     state.tampinhas = {
         current: 0,
         capacity: 10,
-        autoCollect: 1,
-        autoTime: 1
+        collectAmount: 1
     }
     state.lavadora = {
         done: 0,
@@ -69,10 +69,9 @@ export default function store(state, emitter) {
 
     emitter.on('collect', () => {
         state.tampinhas.current = Math.min(
-            state.tampinhas.current + 1,
+            state.tampinhas.current + state.tampinhas.collectAmount,
             state.tampinhas.capacity
         )
-        console.log('coleta', state.tampinhas.current)
         emitter.emit('render')
     })
 
@@ -158,6 +157,7 @@ export default function store(state, emitter) {
                 if (state.extrusora.done >= state.missions[state.currentMission].goal) {
                     state.extrusora.done -= state.missions[state.currentMission].goal
                     state.currentMission += 1
+                    state.coins += 2
                     emitter.emit('pushState', '#melhorias')
                 }
                 emitter.emit('render')
@@ -166,6 +166,63 @@ export default function store(state, emitter) {
             console.log('extrusora já está rodando')
         }
         emitter.emit('render')
+    })
+
+    emitter.on('upgrade:tampinhas-capacity', () => {
+        state.tampinhas.capacity = Math.floor(state.tampinhas.capacity*2)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:tampinhas-amount', () => {
+        state.tampinhas.collectAmount = Math.floor(state.tampinhas.collectAmount*2)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:lavadora-capacity', () => {
+        state.lavadora.capacity = Math.floor(state.lavadora.capacity*2)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:lavadora-time', () => {
+        state.lavadora.processTime = Math.floor(state.lavadora.processTime*0.5)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:trituradora-capacity', () => {
+        state.trituradora.capacity = Math.floor(state.trituradora.capacity*2)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:trituradora-time', () => {
+        state.trituradora.processTime = Math.floor(state.trituradora.processTime*0.5)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
+    })
+    emitter.on('upgrade:extrusora-time', () => {
+        state.extrusora.processTime = Math.floor(state.extrusora.processTime*0.5)
+        state.coins -= 1
+        emitter.emit('render')
+        if (state.coins == 0) {
+            emitter.emit('pushState', '#missao')
+        }
     })
     
 }
