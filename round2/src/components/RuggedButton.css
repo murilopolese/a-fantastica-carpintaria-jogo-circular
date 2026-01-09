@@ -1,0 +1,30 @@
+.rugged-button {
+  color: var(--beige);
+  font-size: 56px;
+  font-weight: 900;
+  width: fit-content;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.075s;
+}
+
+.rugged-button:hover { transform: scale(1.1); }
+.rugged-button:active { transform: scale(0.9); }
+
+.rugged-button .text {
+  background-color: var(--red);
+  padding: 20px;
+  width: 100%;
+}
+
+/* semi‑circles */
+.rugged-button .top .semi-circle,
+.rugged-button .bottom .semi-circle {
+  height: 65px;
+  width: 130px;
+  background-color: var(--red);
+}
+
+.rugged-button .top .semi-circle { border-radius: 130px 130px 0 0; margin-bottom: -1px; }
+.rugged-button .bottom .semi-circle { border-radius: 0 0 130px 130px; margin-top: -1px; }

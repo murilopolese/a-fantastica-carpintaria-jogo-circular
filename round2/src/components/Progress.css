@@ -1,0 +1,13 @@
+.progress {
+  border: solid 4px var(--green);
+  height: 40px;
+  width: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.progress .value {
+  height: 100%;
+  background-color: var(--green);
+  transition: width 0.1s;
+}

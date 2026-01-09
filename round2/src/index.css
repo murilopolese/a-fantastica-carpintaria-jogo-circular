@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 14px;
+    --beige: #fbf2d7;
+    --red: #b42413FF;
+    --pink: #e4afb3;
+    --green: #5ba170;
+    --black: #000;
+    --yellow: #edb94c;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+}
+
+/* SHARED STYLES */
+.column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+button {
+    /* CLEAR BUTTON STYLE */
+    border: 0;
+    outline: none;
+    background-color: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    min-width: 640px;
+    background-color: var(--beige);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    z-index: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+}
+
+button[disabled] {
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.justify-center {
+    justify-content: center;
+}
+.justify-start {
+    justify-content: flex-start;
+}
+.justify-end {
+    justify-content: flex-end;
+}
+.align-center {
+    align-items: center;
+}
+.align-start {
+    align-items: flex-start;
+}
+.align-end {
+    align-items: flex-end;
+}
