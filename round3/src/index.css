@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: "Archivo", sans-serif;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #fbf2d7;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.text-node {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+}
+
+
+@keyframes slideInFromTop {
+  from { transform: translateY(-20%);}
+  to   { transform: translateY(0); }
+}
+@keyframes slideOutFromTop {
+  from { transform: translateY(0);}
+  to   { transform: translateY(-20%); }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-20%); }
+  to   { transform: translateX(0); }
+}
+@keyframes slideOutFromLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-20%); }
+}
+
+@keyframes slideInFromBottom {
+  from { transform: translateY(20%);}
+  to   { transform: translateY(0);}
+}
+@keyframes slideOutFromBottom {
+  from { transform: translateY(0);}
+  to   { transform: translateY(20%);}
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(20%);}
+  to   { transform: translateX(0);}
+}
+@keyframes slideOutFromRight {
+  from { transform: translateX(0);}
+  to   { transform: translateX(20%);}
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slideInFromBottomLeft {
+  from { transform: translate(-100%, 100%);}
+  to   { transform: translate(0, 0);}
+}
+@keyframes slideOutFromBottomLeft {
+  from { transform: translate(0, 0);}
+  to   { transform: translate(-100%, 100%);}
+}
+
+@keyframes slideInFromBottomRight {
+  from { transform: translate(100%, 100%);}
+  to   { transform: translate(0, 0);}
+}
+@keyframes slideOutFromBottomRight {
+  from { transform: translate(0, 0);}
+  to   { transform: translate(100%, 100%);}
+}
+
+@keyframes slideInFromTopLeft {
+  from { transform: translate(-100%, -100%);}
+  to   { transform: translate(0, 0);}
+}
+@keyframes slideOutFromTopLeft {
+  from { transform: translate(0, 0);}
+  to   { transform: translate(-100%, -100%);}
+}
+
+@keyframes slideInFromTopRight {
+  from { transform: translate(100%, -100%);}
+  to   { transform: translate(0, 0);}
+}
+@keyframes slideOutFromTopRight {
+  from { transform: translate(0, 0);}
+  to   { transform: translate(100%, -100%);}
+}

@@ -1,0 +1,101 @@
+/* ==========================================================
+   Mission component styles
+   All selectors are scoped under .mission-container
+========================================================== */
+
+/* Root wrapper */
+.mission-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fbf2d7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards ;
+}
+
+/* ---------- Corner shapes -------------------------------- */
+.mission-container .shape {
+  position: absolute;
+  height: 30%;
+}
+.mission-container .top-left   { 
+  top: 0; 
+  left: 0;
+  animation: slideInFromTopLeft 0.2s forwards;
+  transform: translate(-100%, -100%);
+}
+.mission-container .top-right  { 
+  top: 0; 
+  right: 0;
+  animation: slideInFromTopRight 0.2s forwards;
+  transform: translate(100%, -100%);
+}
+.mission-container .bottom-left { 
+  bottom: 0; 
+  left: 0;
+  animation: slideInFromBottomLeft 0.2s forwards;
+  transform: translate(-100%, 100%);
+}
+.mission-container .bottom-right { 
+  bottom: 0; 
+  right: 0;
+  animation: slideInFromBottomRight 0.2s forwards;
+  transform: translate(100%, 100%);
+}
+
+/* ---------- Main content --------------------------------- */
+.mission-container .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 900px;
+  gap: 60px; 
+  flex-direction: row;
+}
+
+.mission-container .text-section {
+  flex: 1;
+}
+
+/* ---------- Text ---------------------------------------------------- */
+.mission-container .title {
+  font-size: 48px;
+  color: #b42413ff;
+  font-weight: 900;
+  margin-bottom: 15px;
+}
+.mission-container .bold-text,
+.mission-container .description {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-top: 10px; /* row‑gap in original design */
+}
+.mission-container .bold-text { font-weight: 900; }
+
+/* ---------- Illustration ----------------------------------- */
+.mission-container .illustration {
+  display: flex;
+  align-items: center;
+}
+
+.mission-container .rectangle {
+  width: 247px;
+  height: 139px;
+}
+
+/* ---------- Button ---------------------------------------- */
+.mission-container .button {
+  width: 234px;
+  height: 106px;
+  background: #b42413ff;
+  margin-top: 60px; /* row‑gap in original design */
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.mission-container .button:hover { transform: scale(1.05); }
+.mission-container .button:active { transform: scale(0.95); }
