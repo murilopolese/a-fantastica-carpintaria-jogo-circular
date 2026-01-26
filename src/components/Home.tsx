@@ -8,6 +8,7 @@ import rect2 from '../assets/rect2.svg'
 import rect3 from '../assets/rect3.svg'
 import rect4 from '../assets/rect4.svg'
 import rect5 from '../assets/rect5.svg'
+import patrocinio from '../assets/patrocinio.png'
 
 type HomeProps = {
   onNavigate: () => void;
@@ -56,7 +57,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
         <div className="footer">
           <div className="horizontalBar"></div>
-          <div className="sponsors" />
+          <img src={patrocinio} className="sponsors" />
         </div>
       </div>
     </div>

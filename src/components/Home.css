@@ -1,7 +1,3 @@
-/* ------------------------------------------------------------------
-   Home.css
-------------------------------------------------------------------- */
-
 .home-container {
   position: relative;
   width: 100%;
@@ -123,7 +119,7 @@
 .home-container .sponsors {
   width: 100%;
   height: 106px;
-  background: #fff3d8ff;
+  object-fit: contain;
 }
 
 .home-container .background .rect { 

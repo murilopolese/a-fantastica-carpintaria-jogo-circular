@@ -1,0 +1,176 @@
+.tutorialContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 60px;
+  width: 100%;
+  height: 100%;
+  background: #fbf2d7ff;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+  opacity: 0;
+  animation: fadeIn 0.25s forwards, 
+            smallSlideInFromBottom 0.2s forwards;
+}
+.tutorialContainer.out {
+  animation: fadeOut 0.25s forwards, 
+            smallSlideOutFromTop 0.2s forwards;
+}
+
+.tutorialContainer .leftSide {
+  flex-shrink: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.tutorialContainer .objectBox {
+  width: 50%;
+  height: 100%;
+  background: #e4afb3ff;
+  padding: 0 10%;
+  row-gap: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorialContainer .clickableBox {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+  animation: pulse-shake 2s infinite linear;
+}
+.tutorialContainer .clickableBox:hover { 
+  animation: none;
+}
+.tutorialContainer .clickableBox:active { 
+  animation: none;
+  transform: scale(0.95) !important; 
+}
+.tutorialContainer .clickableBox.done {
+  animation: none;
+}
+
+.tutorialContainer .clickableBox img {
+  height: 100%;
+}
+
+.tutorialContainer .progressBar {
+  width: 200px;
+  height: 42px;
+  border: solid #218e79 8px;
+  border-radius: 42px;
+  position: relative;
+}
+
+.tutorialContainer .progressBar .progress {
+  position: absolute;
+  background: #218e79;
+  left: 0;
+  height: 100%;
+}
+
+.tutorialContainer .labelText {
+  font-size: 24px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+.tutorialContainer .rightSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-inline-start: 10%;
+  padding-inline-end: 10%;
+  background: #ffffff;
+  width: 50%;
+  height: 100%;
+}
+
+.tutorialContainer .textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.tutorialContainer .explanationText,
+.tutorialContainer .callToAction {
+  font-family: 'Archivo', sans-serif;
+  color: #000;
+  margin-bottom: 20px;
+}
+.tutorialContainer .explanationText {
+  font-size: 32px;
+  font-weight: 700;
+}
+.tutorialContainer .callToAction {
+  font-size: 28px;
+  font-weight: 700;
+  padding: 0 10%;
+}
+
+.tutorialContainer .currentStep {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 40px 40px;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: stretch;
+  justify-content: start;
+  width: 30%;
+  height: 100%;
+  
+}
+
+.tutorialContainer .currentStep .stepNumber {
+  color: rgba(180, 36, 19, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 110px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(180, 36, 19, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 900;
+}
+.tutorialContainer .currentStep .stepLabel {
+  color: rgba(180, 36, 19, 1);
+  text-transform: none;
+  
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 38px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(180, 36, 19, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 900;
+}
