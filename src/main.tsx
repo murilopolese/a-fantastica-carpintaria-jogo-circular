@@ -8,6 +8,7 @@ import Mission from './components/Mission';
 import { TutorialStep } from './components/TutoriaStep';
 import { TutorialNextStep } from './components/TutorialNextStep';
 import { TutorialFinalStep } from './components/TutorialFinalStep';
+import Game from './components/Game';
 import { useState } from 'react';
 
 import trave from './assets/trave.png'
@@ -50,7 +51,7 @@ const M: React.FC<MissionProps> = ({onNavigate, title, description, callToAction
 
 
 const App: React.FC = () => {
-  const [page, setPage] = useState<'home' | 'mission' | 'step' | 'next-step' | 'final-step' | 'game-intro'>('home');
+  const [page, setPage] = useState<'home' | 'mission' | 'step' | 'next-step' | 'final-step' | 'game-intro' | 'game'>('home');
   const [ currentMission, setCurrentMission ] = useState(0)
 
   const goToMission = () => setPage('mission');
@@ -62,7 +63,7 @@ const App: React.FC = () => {
     setPage('game-intro')
   }
   const goToGame = () => {
-    alert('começa o jogo!')
+    setPage('game')
   }
 
   return (
@@ -73,6 +74,7 @@ const App: React.FC = () => {
       {page === 'next-step' && <TutorialNextStep onNavigate={goToFinalStep} />}
       {page === 'final-step' && <TutorialFinalStep onNavigate={goToGameIntro} />}
       {page === 'game-intro' && <M onNavigate={goToGame} {...mission[currentMission]} />}
+      {page === 'game' && <Game />}
     </>
   );
 };
