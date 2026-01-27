@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './TutorialStep.css';
 
 import coletor from '../assets/coletor.png';
+import ProgressBar from './ProgressBar';
 
 type TutorialStepProps = {
   onNavigate: () => void
@@ -39,12 +40,7 @@ export const TutorialStep: React.FC<TutorialStepProps> = ({ onNavigate }) => {
             <img src={coletor} alt="coletor" />
           </div>
 
-          <div className="progressBar">
-            <div
-              className="progress"
-              style={{ width: `${percent}%` }}
-            />
-          </div>
+          <ProgressBar percent={percent} />
 
           <p className="labelText">{count} tampinhas coletadas.</p>
         </div>

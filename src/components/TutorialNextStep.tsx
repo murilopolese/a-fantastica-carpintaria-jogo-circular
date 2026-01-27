@@ -3,6 +3,7 @@ import './TutorialNextStep.css';
 
 import trituradora from '../assets/trituradora.png';
 import clock from '../assets/clock.png'
+import ProgressBar from './ProgressBar';
 
 type TutorialNextStepProps = {
   onNavigate: () => void;
@@ -62,9 +63,7 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
             <img src={trituradora} alt="trituradora" />
           </div>
 
-          <div className="progressBar">
-            <div className="progress" style={{ width: `${percent}%` }} />
-          </div>
+          <ProgressBar percent={percent} />
 
           <p className="labelText">{counter} tampinhas trituradas.</p>
 

@@ -103,20 +103,6 @@
   height: 100%;
 }
 
-.tutorialNextContainer .progressBar {
-  width: 200px;
-  height: 42px;
-  border: solid #218e79 8px;
-  border-radius: 42px;
-  position: relative;
-}
-
-.tutorialNextContainer .progressBar .progress {
-  position: absolute;
-  background: #218e79;
-  left: 0;
-  height: 100%;
-}
 
 .tutorialNextContainer .labelText {
   font-size: 24px;

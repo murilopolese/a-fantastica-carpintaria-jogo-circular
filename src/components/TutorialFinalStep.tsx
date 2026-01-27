@@ -3,6 +3,7 @@ import './TutorialFinalStep.css';
 
 import extrusora from '../assets/extrusora.png';
 import clock from '../assets/clock.png'
+import ProgressBar from './ProgressBar';
 
 type TutorialFinalStepProps = {
   onNavigate: () => void;
@@ -62,9 +63,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
             <div className="ripa"></div>
           </div>
 
-          <div className="progressBar">
-            <div className="progress" style={{ width: `${percent}%` }} />
-          </div>
+          <ProgressBar percent={percent} />
 
           <p className="labelText">{counter} ripas prontas.</p>
         </div>
