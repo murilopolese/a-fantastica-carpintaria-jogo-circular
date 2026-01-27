@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './TutorialStep.css';
 
 import coletor from '../assets/coletor.png';
-import ProgressBar from './ProgressBar';
+import ProgressBar from './ui/ProgressBar';
+import Rugged from './ui/Rugged';
 
 type TutorialStepProps = {
   onNavigate: () => void
@@ -54,7 +55,7 @@ export const TutorialStep: React.FC<TutorialStepProps> = ({ onNavigate }) => {
           </p>
 
             {count >= capacity
-              ? <button onClick={() => setVisible(false)}>Hora de começar a triturar!</button>
+              ? <div className="button"><Rugged onClick={() => setVisible(false)}>HORA DE TRITURAR <br/> AS TAMPINHAS!</Rugged></div>
               : <p className="callToAction">Clique no coletor para depositar tampinhas!</p>}
 
         </div>

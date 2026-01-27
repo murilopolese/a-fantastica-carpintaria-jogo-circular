@@ -3,7 +3,8 @@ import './TutorialNextStep.css';
 
 import trituradora from '../assets/trituradora.png';
 import clock from '../assets/clock.png'
-import ProgressBar from './ProgressBar';
+import ProgressBar from './ui/ProgressBar';
+import Rugged from './ui/Rugged';
 
 type TutorialNextStepProps = {
   onNavigate: () => void;
@@ -78,7 +79,7 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
           </p>
 
           {counter === target ? (
-            <button onClick={() => setVisible(false)}>Vamos derreter o plástico!</button>
+            <div className="button"><Rugged onClick={() => setVisible(false)}>VAMOS DERRETER <br/> O PLÁSTICO!</Rugged></div>
           ) : on ? (
             <p className="callToAction">Triturando...</p>
           ) : (

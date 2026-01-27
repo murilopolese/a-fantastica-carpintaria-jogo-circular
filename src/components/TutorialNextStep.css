@@ -126,6 +126,10 @@
   height: 100%;
 }
 
+.tutorialNextContainer .rightSide .button { 
+  animation: pulse-shake 2s infinite linear;
+}
+
 .tutorialNextContainer .textContainer {
   flex: 1;
   display: flex;

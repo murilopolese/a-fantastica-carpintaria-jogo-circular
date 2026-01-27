@@ -3,7 +3,8 @@ import './TutorialFinalStep.css';
 
 import extrusora from '../assets/extrusora.png';
 import clock from '../assets/clock.png'
-import ProgressBar from './ProgressBar';
+import ProgressBar from './ui/ProgressBar';
+import Rugged from './ui/Rugged';
 
 type TutorialFinalStepProps = {
   onNavigate: () => void;
@@ -77,7 +78,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
           </p>
 
           {counter === target ? (
-            <button onClick={() => setVisible(false)}>Agora é entregar o projeto!</button>
+            <div className="button"><Rugged onClick={() => setVisible(false)}>AGORA É ENTREGAR <br /> O PROJETO!</Rugged></div>
           ) : on ? (
             <p className="callToAction">Extrudindo...</p>
           ) : (

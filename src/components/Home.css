@@ -90,15 +90,11 @@
 }
 
 .home-container .button {
-  width: 234px;
-  height: 106px;
-  background: #b42413ff;
   flex-shrink: 0;
   cursor: pointer;
+  animation: pulse-shake 2s infinite linear;
   transition: all 0.1s;
 }
-.home-container .button:hover { transform: scale(1.05); }
-.home-container .button:active { transform: scale(0.95); }
 
 .home-container .footer {
   display: flex;

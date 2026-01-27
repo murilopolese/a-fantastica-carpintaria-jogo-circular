@@ -2,6 +2,8 @@
 import * as React from 'react';
 import './Home.css';
 
+import Rugged from './ui/Rugged';
+
 import logo from '../assets/logo.png'
 import rect1 from '../assets/rect1.svg'
 import rect2 from '../assets/rect2.svg'
@@ -52,7 +54,9 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             <span>resíduos plásticos?</span>
           </div>
 
-          <div className="button" onClick={handleClick} />
+          <div className="button">
+            <Rugged onClick={handleClick}>INICIAR</Rugged>
+          </div>
         </div>
 
         <div className="footer">
