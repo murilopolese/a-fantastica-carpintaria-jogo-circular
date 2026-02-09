@@ -10,7 +10,7 @@ type TutorialNextStepProps = {
   onNavigate: () => void;
 };
 
-const target = 300;
+const target = 1500;
 const runTime = 3000;
 
 export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }) => {
@@ -31,7 +31,7 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
     setTimeout(() => {
       clearInterval(interval)
       setOn(false);
-      setCounter(prev => Math.min(prev + 100, target));
+      setCounter(prev => Math.min(prev + 500, target));
     }, runTime);
   };
 
@@ -75,16 +75,17 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
         <div className="textContainer">
           <p className="explanationText">
             Depois de coletar, você precisa triturar todas as tampinhas.
-            Demora para triturar e <strong>só tritura 100 tampinhas por vez</strong>.
+            <br /><br />
+            Demora para triturar e só tritura <strong>500</strong> tampinhas por vez.
           </p>
 
           {counter === target ? (
-            <div className="button"><Rugged onClick={() => setVisible(false)}>VAMOS DERRETER <br/> O PLÁSTICO!</Rugged></div>
+            <div className="button"><Rugged onClick={() => setVisible(false)}>DERRETER</Rugged></div>
           ) : on ? (
             <p className="callToAction">Triturando...</p>
           ) : (
             <p className="callToAction">
-              Clique na trituradora para começar a triturar!
+              Clique na trituradora para ligar a máquina!
             </p>
           )}
         </div>

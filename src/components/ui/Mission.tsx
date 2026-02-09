@@ -2,11 +2,11 @@
 import React from 'react';
 import './Mission.css';
 
-import corner1 from '../assets/corner1.png';
-import corner2 from '../assets/corner2.png';
-import corner3 from '../assets/corner3.png';
-import corner4 from '../assets/corner4.png';
-import Rugged from './ui/Rugged';
+import corner1 from '../../assets/corner1.png';
+import corner2 from '../../assets/corner2.png';
+import corner3 from '../../assets/corner3.png';
+import corner4 from '../../assets/corner4.png';
+import Rugged from './Rugged';
 
 type MissionProps = {
   onNavigate: () => void;

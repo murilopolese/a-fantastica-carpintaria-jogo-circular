@@ -14,7 +14,7 @@ const target = 3;
 const runTime = 3000;
 
 export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate }) => {
-   const [on, setOn] = useState(false);
+  const [on, setOn] = useState(false);
   const [counter, setCounter] = useState(0);
   const [countDown, setCountDown] = useState(runTime)
   const [visible, setVisible] = useState(true)
@@ -47,7 +47,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
       <div className="leftSide">
         <div className="currentStep">
           <div className="stepNumber">3</div>
-          <div className="stepLabel">ripas</div>
+          <div className="stepLabel">derreter</div>
         </div>
 
         <div className={`objectBox`}>
@@ -74,11 +74,12 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
         <div className="textContainer">
           <p className="explanationText">
             As tampinhas trituradas são derretidas e viram ripas plásticas na
-            máquina <strong>extrusora</strong>.
+            máquina <strong>extrusora</strong>. <br/><br/>
+            São necessárias <strong>1000</strong> tampinhas trituradas por ripa.
           </p>
 
           {counter === target ? (
-            <div className="button"><Rugged onClick={() => setVisible(false)}>AGORA É ENTREGAR <br /> O PROJETO!</Rugged></div>
+            <div className="button"><Rugged onClick={() => setVisible(false)}>PRONTO!</Rugged></div>
           ) : on ? (
             <p className="callToAction">Extrudindo...</p>
           ) : (

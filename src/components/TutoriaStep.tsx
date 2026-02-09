@@ -50,12 +50,13 @@ export const TutorialStep: React.FC<TutorialStepProps> = ({ onNavigate }) => {
       <div className="rightSide">
         <div className="textContainer">
           <p className="explanationText">
-            Para fazer a trave é preciso coletar <strong>3.000 tampinhas</strong>.
+            Para fazer a trave é preciso coletar um total de <strong>3.000 tampinhas</strong>.
+            <br /><br />
             Porém só cabem <strong>750 tampinhas</strong> no coletor.
           </p>
 
             {count >= capacity
-              ? <div className="button"><Rugged onClick={() => setVisible(false)}>HORA DE TRITURAR <br/> AS TAMPINHAS!</Rugged></div>
+              ? <div className="button"><Rugged onClick={() => setVisible(false)}>TRITURAR</Rugged></div>
               : <p className="callToAction">Clique no coletor para depositar tampinhas!</p>}
 
         </div>

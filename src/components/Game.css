@@ -6,8 +6,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
+  min-height: 100%;
   background: #fbf2d7ff;
   overflow: hidden;
 }
@@ -19,9 +19,8 @@
   justify-content: space-evenly;
   column-gap: 100px;
   row-gap: 60px;
-  width: 100%;
   max-width: 1200px;
-  padding-top: 20px;
+  padding: 0 60px;
 }
 
 .gameContainer .step {
@@ -29,8 +28,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 560px;
-  width: 100%;
+  justify-content: flex-start;
+  width: 250px;
+  gap: 40px;
+}
+
+.unavailable {
+  opacity: 0.2;
+  cursor: not-allowed !important;
 }
 
 .gameContainer .timer,
@@ -46,10 +51,40 @@
 .gameContainer .timer {
   width: 70px;
   height: 70px;
-  background: #ffffff;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  animation: pulse 1s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.gameContainer .timer.on {
+  opacity: 1;
+}
+
+.gameContainer .timer .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+.gameContainer .timer .number {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-weight: 900;
+  margin-top: 8px;
+  margin-right: 4px;
 }
 
 .gameContainer .invisibleTimer {
@@ -63,11 +98,18 @@
   color: #000;
 }
 
-.gameContainer .clickable {
-  width: 200px;
-  height: 300px;
-  background: #ffffff;
+.gameContainer .step .clickable {
+  height: 250px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
+
+.gameContainer .step .clickable.on {
+  animation: shake 0.05s infinite linear !important;
+  cursor: not-allowed;
+  opacity: 1 !important;
+}
+
 
 .gameContainer .progress {
   width: 172px;
@@ -81,6 +123,7 @@
   font-family: 'Archivo', sans-serif;
   font-weight: 700;
   color: #000;
+  text-align: center;
 }
 
 /* Background for steps container */
@@ -88,10 +131,9 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: 140px;
   width: 100%;
-  height: 60%;
-  background: #e4afb3ff;
+  height: 250px;
 }
 
 /* Mission panel */
@@ -99,7 +141,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 293px;
+  width: 100%;
+  max-width: 400px;
+  gap: 40px;
 }
 
 .gameContainer .requirements,
@@ -120,4 +164,8 @@
   width: 234px;
   height: 106px;
   background: #b42413ff;
+}
+
+.gameContainer .hidden {
+  visibility: hidden;
 }
