@@ -10,8 +10,6 @@ import { TutorialStep } from './components/TutoriaStep';
 import { TutorialNextStep } from './components/TutorialNextStep';
 import { TutorialFinalStep } from './components/TutorialFinalStep';
 import Game from './components/Game';
-import GameOver from './components/GameOver';
-import { GameVictory } from './components/GameVictory';   // NEW component
 import { useState } from 'react';
 
 import trave from './assets/trave.png'
@@ -21,17 +19,50 @@ const mission = [
     title: "Desafio!",
     callToAction: "Sua missão começa agora!",
     description:
-      "Construa um gol de futebol para uma escola usando plástico descartado. Colete, triture e processe o material para aprender as etapas.",
+      "Antes de colocar a mão na massa, você vai fazer um tour rápido pelas três etapas do processo: coleta, trituração e extrusão. Depois disso, é hora de construir o gol com plástico descartado.",
     illustrationSrc: trave,
   },
   {
-    title: "Arrasou!",
-    callToAction: "A trave ficou ótima!",
+    title: "Parabéns!",
+    callToAction: "O tutorial acabou",
     description:
-      "Ficou tão boa que querem outra! Agora é pra valer: Em quanto tempo você consegue entregar essa trave?",
+      "Você já conhece todas as etapas: coleta, trituração e extrusão. Agora é hora de colocar tudo junto e construir o gol com plástico reciclado.",
     illustrationSrc: trave,
+    timeout: 60000
   },
+  {
+    title: "Nova Encomenda!",
+    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
+    description:
+      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 45 segundos para terminar. Boa sorte!",
+    illustrationSrc: trave,
+    timeout: 45000
+  },
+  {
+    title: "Nova Encomenda!",
+    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
+    description:
+      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 30 segundos para terminar. Boa sorte!",
+    illustrationSrc: trave,
+    timeout: 30000
+  },
+  {
+    title: "Nova Encomenda!",
+    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
+    description:
+      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 20 segundos para terminar. Boa sorte!",
+    illustrationSrc: trave,
+    timeout: 20000
+  }
 ];
+
+const gameover = {
+  title: "Desafio Não Concluído",
+  callToAction: "Não desista – você ainda pode tentar!",
+  description:
+    "Você não conseguiu entregar a trave dentro do tempo estipulado, mas lembre-se: cada tentativa é uma oportunidade de melhorar. Tente novamente e veja o que você consegue alcançar!",
+  illustrationSrc: trave
+}
 
 type MissionProps = {
   onNavigate: () => void;
@@ -82,8 +113,14 @@ const App: React.FC = () => {
     setPage('game-intro');
   };
   const goToGame = () => setPage('game');
-  const goToGameOver = () => setPage('game-over');   // existing route
-  const goToVictory = () => setPage('victory');       // NEW route
+  const goToGameOver = () => setPage('game-over');
+  const goToVictory = () => {
+    setCurrentMission((prev) => prev + 1);
+    setPage('victory');
+  }
+  const goToNextMission = () => {
+    setPage('game');
+  }
 
   return (
     <>
@@ -93,9 +130,9 @@ const App: React.FC = () => {
       {page === 'next-step' && <TutorialNextStep onNavigate={goToFinalStep} />}
       {page === 'final-step' && <TutorialFinalStep onNavigate={goToGameIntro} />}
       {page === 'game-intro' && <M onNavigate={goToGame} {...mission[currentMission]} />}
-      {page === 'game' && <Game onGameOver={goToGameOver} onDeliver={goToVictory} />}
-      {page === 'game-over' && <GameOver />}
-      {page === 'victory' && <GameVictory />}
+      {page === 'game' && <Game onGameOver={goToGameOver} onDeliver={goToVictory} missionTimeout={mission[currentMission].timeout||0} />}
+      {page === 'victory' && <M onNavigate={goToNextMission} {...mission[currentMission]} />}
+      {page === 'game-over' && <M onNavigate={goToNextMission} {...gameover} />}
     </>
   );
 };

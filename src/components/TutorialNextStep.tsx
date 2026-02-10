@@ -76,7 +76,7 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
           <p className="explanationText">
             Depois de coletar, você precisa triturar todas as tampinhas.
             <br /><br />
-            Demora para triturar e só tritura <strong>500</strong> tampinhas por vez.
+            Cada rodada consegue triturar apenas <strong>500</strong> tampinhas e o processo leva tempo.
           </p>
 
           {counter === target ? (
@@ -85,7 +85,7 @@ export const TutorialNextStep: React.FC<TutorialNextStepProps> = ({ onNavigate }
             <p className="callToAction">Triturando...</p>
           ) : (
             <p className="callToAction">
-              Clique na trituradora para ligar a máquina!
+              Clique na trituradora para começar a trituração!
             </p>
           )}
         </div>

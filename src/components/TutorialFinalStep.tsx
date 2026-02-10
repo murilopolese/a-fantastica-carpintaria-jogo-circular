@@ -75,7 +75,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
           <p className="explanationText">
             As tampinhas trituradas são derretidas e viram ripas plásticas na
             máquina <strong>extrusora</strong>. <br/><br/>
-            São necessárias <strong>1000</strong> tampinhas trituradas por ripa.
+            Para produzir cada ripa, precisamos de <strong>1 000</strong> tampinhas trituradas.
           </p>
 
           {counter === target ? (
@@ -84,7 +84,7 @@ export const TutorialFinalStep: React.FC<TutorialFinalStepProps> = ({ onNavigate
             <p className="callToAction">Extrudindo...</p>
           ) : (
             <p className="callToAction">
-              Clique na extrusora para começar a produção!
+              Clique na extrusora para iniciar a produção!
             </p>
           )}
         </div>

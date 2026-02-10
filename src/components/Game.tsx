@@ -19,7 +19,6 @@ const SHREDDER_LOAD = 500;
 const EXTRUDER_CAPACITY = 3;
 const EXTRUDER_LOAD = 1000;
 
-const GLOBAL_RUN_TIME = 60000;     // GAME TIMEOUT
 const RUN_TIME = 3000;             // MACHINE TIMEOUT
 
 /* ------------------------------------------------------------------ */
@@ -30,9 +29,10 @@ interface GameProps {
   onGameOver: () => void;
   /** Callback invoked when ready and deliver button clicked. */
   onDeliver?: () => void;          // optional
+  missionTimeout: number
 }
 
-const Game: React.FC<GameProps> = ({ onGameOver, onDeliver }) => {
+const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) => {
   /* --- State for all game stages --------------------------------- */
   const [ collected, setCollected ] = useState(0);
   const [ shredded, setShredded ] = useState(0);
@@ -45,7 +45,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver }) => {
 
   /* --- Global countdown state ------------------------------------- */
   const [ globalOn, setGlobalOn ] = useState(false);
-  const [ globalCountDown, setGlobalCountDown ] = useState(GLOBAL_RUN_TIME);
+  const [ globalCountDown, setGlobalCountDown ] = useState(missionTimeout);
   const [ globalTimeout, setGlobalTimeout ] = useState(0);
 
   /* --- Ready flag ----------------------------------------------- */
@@ -94,7 +94,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver }) => {
       clearTimeout(globalTimeout)
 
       setGlobalOn(true);
-      setGlobalCountDown(GLOBAL_RUN_TIME);
+      setGlobalCountDown(missionTimeout);
 
       // Update every second
       const interval = setInterval(() => {
@@ -106,7 +106,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver }) => {
         clearInterval(interval);
         setGlobalOn(false);
         onGameOver();
-      }, GLOBAL_RUN_TIME);
+      }, missionTimeout);
       setGlobalTimeout(timeout)
     }
   };
@@ -181,7 +181,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver }) => {
         </div>
 
         <div className="callToAction">
-          Você consegue terminar as outras duas em {Math.floor(GLOBAL_RUN_TIME/1000)} segundos?
+          Você consegue produzir essa quantidade em {Math.floor(missionTimeout/1000)} segundos?
         </div>
 
         {/* Rugged button – starts the global countdown or delivers if ready */}
