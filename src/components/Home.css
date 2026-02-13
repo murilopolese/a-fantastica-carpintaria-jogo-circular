@@ -1,0 +1,173 @@
+.home-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #c18257ff;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 0;
+  flex-direction: row;
+  transition: background-color 0.2s 0.2s;
+}
+.home-container.out {
+  background-color: transparent;
+}
+
+.home-container .logo {
+  position: absolute;
+  left: 61px;
+  top: 45px;
+  width: 142px;
+  height: 106px;
+  z-index: 2;
+}
+
+.home-container .background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: opacity 0.4s 0.4s;
+}
+.home-container .background.out {
+  opacity: 0;
+}
+
+.home-container .content {
+  position: relative;
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  row-gap: 60px;
+  z-index: 999;
+
+  opacity: 0;
+  animation: fadeIn 0.5s 0.2s forwards;
+}
+.home-container .content.out {
+  opacity: 0;
+  animation: fadeOut 0.5s forwards;
+}
+
+.home-container .lettering {
+  width: 100%;
+  height: 279px;
+  background: #fff3d8ff;
+}
+
+.home-container .callToAction {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  min-height: 106px;
+}
+
+.home-container .text {
+  font-size: 24px;
+  color: #b42413ff;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-break: auto;
+  white-space: pre;
+  text-transform: none;
+}
+
+.home-container .button {
+  flex-shrink: 0;
+  cursor: pointer;
+  animation: pulse-shake 2s infinite linear;
+  transition: all 0.1s;
+}
+
+.home-container .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+  width: 100%;
+}
+
+.home-container .horizontalBar {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: #fff3d8;
+}
+
+.home-container .sponsors {
+  width: 100%;
+  height: 106px;
+  object-fit: contain;
+}
+
+.home-container .background .rect { 
+  position: absolute; 
+  object-fit: cover; 
+  width: 100%; 
+  height: 100%; 
+}
+.home-container .background .rect1 { left: -2.5%; top: 0px; z-index: 0; }
+.home-container .background .rect2 { left: -2.5%; bottom: 0px; z-index: 1; }
+.home-container .background .rect3 { right: -2.5%; bottom: 0px; z-index: 0; }
+.home-container .background .rect4 { right: -2.5%; top: 0px; z-index: 0; }
+.home-container .background .rect5 { right: -2.5%; bottom: 0px; z-index: 1; }
+
+.home-container .background .rect1 {
+  transform: translateX(-20%);
+  animation: slideInFromLeft 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background.out .rect1 {
+  transform: translateX(0%);
+  animation: slideOutFromLeft 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background .rect2 {
+  transform: translateX(-20%);
+  animation: slideInFromLeft 0.5s 0.1s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background.out .rect2 {
+  transform: translateX(0%);
+  animation: slideOutFromLeft 0.5s 0.1s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background .rect3 {
+  transform: translateX(20%);
+  animation: slideInFromRight 0.5s 0.15s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background.out .rect3 {
+  transform: translateX(0%);
+  animation: slideOutFromRight 0.5s 0.15s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background .rect4 {
+  transform: translateX(20%);
+  animation: slideInFromRight 0.5s 0.0s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background.out .rect4 {
+  transform: translateX(0%);
+  animation: slideOutFromRight 0.5s 0.0s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background .rect5 {
+  transform: translateX(20%);
+  animation: slideInFromRight 0.5s 0.10s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+.home-container .background.out .rect5 {
+  transform: translateX(0%);
+  animation: slideOutFromRight 0.5s 0.10s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+

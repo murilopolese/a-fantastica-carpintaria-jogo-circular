@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&display=swap');
+
+/* Layout */
+.gameContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: 100%;
+  background: #fbf2d7ff;
+  overflow: hidden;
+}
+
+.gameContainer .steps {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  column-gap: 100px;
+  row-gap: 60px;
+  max-width: 1200px;
+  padding: 0 60px;
+}
+
+.gameContainer .step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 250px;
+  gap: 40px;
+}
+
+.unavailable {
+  opacity: 0.2;
+  cursor: not-allowed !important;
+}
+
+.gameContainer .timer,
+.gameContainer .clickable,
+.gameContainer .progress,
+.gameContainer .text,
+.gameContainer .mission,
+.gameContainer .button,
+.gameContainer .background {
+  box-sizing: border-box;
+}
+
+.gameContainer .timer {
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: pulse 1s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.gameContainer .timer.on {
+  opacity: 1;
+}
+
+.gameContainer .timer .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+.gameContainer .timer .number {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-weight: 900;
+  margin-top: 8px;
+  margin-right: 4px;
+}
+
+.gameContainer .invisibleTimer {
+  opacity: 0;
+}
+
+.gameContainer .number {
+  font-size: 28px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  color: #000;
+}
+
+.gameContainer .step .clickable {
+  height: 250px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.gameContainer .step .clickable.on {
+  animation: shake 0.05s infinite linear !important;
+  cursor: not-allowed;
+  opacity: 1 !important;
+}
+
+
+.gameContainer .progress {
+  width: 172px;
+  height: 38px;
+  border: 8px solid #218e79ff;
+  border-radius: 100px;
+}
+
+.gameContainer .text {
+  font-size: 24px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+}
+
+/* Background for steps container */
+.gameContainer .background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 140px;
+  width: 100%;
+  height: 250px;
+}
+
+/* Mission panel */
+.gameContainer .mission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  gap: 40px;
+}
+
+.gameContainer .requirements,
+.gameContainer .callToAction {
+  font-size: 28px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.gameContainer .requirements .highlight {
+  font-weight: 900;
+}
+
+.gameContainer .button {
+  width: 234px;
+  height: 106px;
+  background: #b42413ff;
+}
+
+.gameContainer .hidden {
+  visibility: hidden;
+}

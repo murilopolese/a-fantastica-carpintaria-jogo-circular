@@ -1,0 +1,32 @@
+.rugged {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.top,
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  background: #b42413ff;
+  color: rgba(250, 241, 214, 1);
+  font-family: "Archivo", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  text-align: center;
+  margin: -2px 0;
+}
+
+.rugged:hover { transform: scale(1.1); }
+.rugged:active { transform: scale(1); }
