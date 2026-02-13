@@ -91,6 +91,15 @@
   opacity: 0;
 }
 
+.gameContainer .mission .timer {
+  animation: none;
+  opacity: 1;
+  transform: scale(1.05)
+}
+.gameContainer .mission .timer.on {
+  animation: pulse 1s ease-in-out infinite;
+}
+
 .gameContainer .number {
   font-size: 28px;
   font-family: 'Archivo', sans-serif;

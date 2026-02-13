@@ -3,7 +3,7 @@
 import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   useNavigate,
@@ -27,47 +27,30 @@ declare global {
   }
 }
 
-const mission = [
+const tutorial = [
   {
     title: "Desafio!",
     callToAction: "Sua missão começa agora!",
     description:
       "Antes de colocar a mão na massa, você vai fazer um tour rápido pelas três etapas do processo: coleta, trituração e extrusão. Depois disso, é hora de construir o gol com plástico descartado.",
-    illustrationSrc: trave,
+    illustrationSrc: trave
   },
   {
     title: "Parabéns!",
     callToAction: "O tutorial acabou",
     description:
       "Você já conhece todas as etapas: coleta, trituração e extrusão. Agora é hora de colocar tudo junto e construir o gol com plástico reciclado.",
-    illustrationSrc: trave,
-    timeout: 60000
-  },
-  {
-    title: "Nova Encomenda!",
-    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
-    description:
-      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 45 segundos para terminar. Boa sorte!",
-    illustrationSrc: trave,
-    timeout: 45000
-  },
-  {
-    title: "Nova Encomenda!",
-    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
-    description:
-      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 30 segundos para terminar. Boa sorte!",
-    illustrationSrc: trave,
-    timeout: 30000
-  },
-  {
-    title: "Nova Encomenda!",
-    callToAction: "Você conseguiu! Agora tem mais trabalho e menos tempo.",
-    description:
-      "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido: apenas 20 segundos para terminar. Boa sorte!",
-    illustrationSrc: trave,
-    timeout: 20000
+    illustrationSrc: trave
   }
 ];
+
+const mission = {
+    title: "Nova Encomenda!",
+    callToAction: "Você conseguiu! Tem mais trabalho e menos tempo.",
+    description: "Você recebeu uma nova ordem para construir a trave com plástico reciclado. No entanto, o prazo é reduzido. Boa sorte!",
+    illustrationSrc: trave
+}
+
 
 const gameover = {
   title: "Desafio Não Concluído",
@@ -75,7 +58,7 @@ const gameover = {
   description:
     "Você não conseguiu entregar a trave dentro do tempo estipulado, mas lembre-se: cada tentativa é uma oportunidade de melhorar. Tente novamente e veja o que você consegue alcançar!",
   illustrationSrc: trave
-}
+};
 
 type MissionProps = {
   onNavigate: () => void;
@@ -103,99 +86,61 @@ const M: React.FC<MissionProps> = ({
 );
 
 const App: React.FC = () => {
-  const [currentMission, setCurrentMission] = useState(0);
+  const [currentTimeout, setCurrentTimeout] = useState(60*1000)
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const goToMission = () => navigate('/mission');
-  const goToStep = () => navigate('/step');
-  const goToNextStep = () => navigate('/next-step');
-  const goToFinalStep = () => navigate('/final-step');
+  const goToTutorial = () => navigate('/tutorial');
+  const goToTutorial1 = () => navigate('/tutorial-1');
+  const goToTutorial2 = () => navigate('/tutorial-2');
+  const goToTutorial3 = () => navigate('/tutorial-3');
+  const goToTutorial4 = () => navigate('/tutorial-4');
 
-  // These two need to bump the mission index *before* navigating.
-  const goToGameIntro = () => {
-    setCurrentMission((prev) => prev + 1);
-    navigate('/game-intro');
-  };
-  const goToVictory = () => {
-    setCurrentMission((prev) => prev + 1);
-    navigate('/victory');
-  };
-
-  const goToGame = () => navigate('/game');
-  const goToGameOver = () => navigate('/game-over');
-  const goToNextMission = () => navigate('/game');
+  const goToVictory = () => navigate('/vitoria');
+  const goToGame = () => navigate('/jogo');
+  const goToGameOver = () => navigate('/tente-outra-vez');
+  const goToNextMission = () => {
+    setCurrentTimeout(prev => prev - 10000 )
+    navigate('/jogo');
+  }
 
   useEffect(() => {
     if (window.umami) {
-      window.umami.track(`pageview ${pathname}`);
+      window.umami.track(`hashroute ${pathname}`);
     }
   }, [pathname]);
 
   return (
     <Routes>
-      <Route path="/" element={<Home onNavigate={goToMission} />} />
+      <Route path="/" element={<Home onNavigate={goToTutorial} />} />
+
+      <Route path="/tutorial" element={<M onNavigate={goToTutorial1} {...tutorial[0]} />} />
+      <Route path="/tutorial-1" element={<TutorialStep onNavigate={goToTutorial2} />} />
+      <Route path="/tutorial-2" element={<TutorialNextStep onNavigate={goToTutorial3} />} />
+      <Route path="/tutorial-3" element={<TutorialFinalStep onNavigate={goToTutorial4} />} />
+      <Route path="/tutorial-4" element={<M onNavigate={goToGame} {...tutorial[1]} />} />
 
       <Route
-        path="/mission"
-        element={
-          <M
-            onNavigate={goToStep}
-            {...mission[currentMission]}
-          />
-        }
-      />
-
-      <Route path="/step" element={<TutorialStep onNavigate={goToNextStep} />} />
-      <Route path="/next-step" element={<TutorialNextStep onNavigate={goToFinalStep} />} />
-      <Route
-        path="/final-step"
-        element={<TutorialFinalStep onNavigate={goToGameIntro} />}
-      />
-
-      <Route
-        path="/game-intro"
-        element={
-          <M
-            onNavigate={goToGame}
-            {...mission[currentMission]}
-          />
-        }
-      />
-
-      <Route
-        path="/game"
+        path="/jogo"
         element={
           <Game
             onGameOver={goToGameOver}
             onDeliver={goToVictory}
-            missionTimeout={mission[currentMission].timeout || 0}
+            missionTimeout={currentTimeout}
           />
         }
       />
 
-      <Route
-        path="/victory"
-        element={
-          <M
-            onNavigate={goToNextMission}
-            {...mission[currentMission]}
-          />
-        }
-      />
-
-      <Route
-        path="/game-over"
-        element={<M onNavigate={goToNextMission} {...gameover} />}
-      />
+      <Route path="/vitoria" element={<M onNavigate={goToNextMission} {...mission} />} />
+      <Route path="/tente-outra-vez" element={<M onNavigate={goToGame} {...gameover} />} />
     </Routes>
   );
 };
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
 );
