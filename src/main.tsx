@@ -2,6 +2,13 @@
 
 import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import './index.css';
 
 import Home from './components/Home';
@@ -96,63 +103,99 @@ const M: React.FC<MissionProps> = ({
 );
 
 const App: React.FC = () => {
-  const [page, setPage] = useState<
-    | 'home'
-    | 'mission'
-    | 'step'
-    | 'next-step'
-    | 'final-step'
-    | 'game-intro'
-    | 'game'
-    | 'game-over'
-    | 'victory'
-  >('home');
   const [currentMission, setCurrentMission] = useState(0);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  /* ---- navigation helpers ------------------------------------------- */
-  const goToMission = () => setPage('mission');
-  const goToStep = () => setPage('step');
-  const goToNextStep = () => setPage('next-step');
-  const goToFinalStep = () => setPage('final-step');
+  const goToMission = () => navigate('/mission');
+  const goToStep = () => navigate('/step');
+  const goToNextStep = () => navigate('/next-step');
+  const goToFinalStep = () => navigate('/final-step');
+
+  // These two need to bump the mission index *before* navigating.
   const goToGameIntro = () => {
     setCurrentMission((prev) => prev + 1);
-    setPage('game-intro');
+    navigate('/game-intro');
   };
-  const goToGame = () => setPage('game');
-  const goToGameOver = () => setPage('game-over');
   const goToVictory = () => {
     setCurrentMission((prev) => prev + 1);
-    setPage('victory');
-  }
-  const goToNextMission = () => {
-    setPage('game');
-  }
+    navigate('/victory');
+  };
+
+  const goToGame = () => navigate('/game');
+  const goToGameOver = () => navigate('/game-over');
+  const goToNextMission = () => navigate('/game');
 
   useEffect(() => {
     if (window.umami) {
-      window.umami.track(`pageview ${page}`);
+      window.umami.track(`pageview ${pathname}`);
     }
+  }, [pathname]);
 
-  }, [page])
-
-  
   return (
-    <>
-      {page === 'home' && <Home onNavigate={goToMission} />}
-      {page === 'mission' && <M onNavigate={goToStep} {...mission[currentMission]} />}
-      {page === 'step' && <TutorialStep onNavigate={goToNextStep} />}
-      {page === 'next-step' && <TutorialNextStep onNavigate={goToFinalStep} />}
-      {page === 'final-step' && <TutorialFinalStep onNavigate={goToGameIntro} />}
-      {page === 'game-intro' && <M onNavigate={goToGame} {...mission[currentMission]} />}
-      {page === 'game' && <Game onGameOver={goToGameOver} onDeliver={goToVictory} missionTimeout={mission[currentMission].timeout||0} />}
-      {page === 'victory' && <M onNavigate={goToNextMission} {...mission[currentMission]} />}
-      {page === 'game-over' && <M onNavigate={goToNextMission} {...gameover} />}
-    </>
+    <Routes>
+      <Route path="/" element={<Home onNavigate={goToMission} />} />
+
+      <Route
+        path="/mission"
+        element={
+          <M
+            onNavigate={goToStep}
+            {...mission[currentMission]}
+          />
+        }
+      />
+
+      <Route path="/step" element={<TutorialStep onNavigate={goToNextStep} />} />
+      <Route path="/next-step" element={<TutorialNextStep onNavigate={goToFinalStep} />} />
+      <Route
+        path="/final-step"
+        element={<TutorialFinalStep onNavigate={goToGameIntro} />}
+      />
+
+      <Route
+        path="/game-intro"
+        element={
+          <M
+            onNavigate={goToGame}
+            {...mission[currentMission]}
+          />
+        }
+      />
+
+      <Route
+        path="/game"
+        element={
+          <Game
+            onGameOver={goToGameOver}
+            onDeliver={goToVictory}
+            missionTimeout={mission[currentMission].timeout || 0}
+          />
+        }
+      />
+
+      <Route
+        path="/victory"
+        element={
+          <M
+            onNavigate={goToNextMission}
+            {...mission[currentMission]}
+          />
+        }
+      />
+
+      <Route
+        path="/game-over"
+        element={<M onNavigate={goToNextMission} {...gameover} />}
+      />
+    </Routes>
   );
 };
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 );
