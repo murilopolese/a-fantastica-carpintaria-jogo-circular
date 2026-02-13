@@ -14,6 +14,12 @@ import { useState } from 'react';
 
 import trave from './assets/trave.png'
 
+declare global {
+  interface Window {
+    umami?: any;
+  }
+}
+
 const mission = [
   {
     title: "Desafio!",
