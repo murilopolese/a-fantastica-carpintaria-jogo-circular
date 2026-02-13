@@ -1,6 +1,6 @@
 // src/main.tsx
 
-import { StrictMode } from 'react';
+import { StrictMode, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 
@@ -121,6 +121,13 @@ const App: React.FC = () => {
   const goToNextMission = () => {
     setPage('game');
   }
+
+  useEffect(() => {
+    if (window.umami) {
+      window.umami.track(`pageview ${page}`);
+    }
+
+  }, [page])
 
   
   return (
