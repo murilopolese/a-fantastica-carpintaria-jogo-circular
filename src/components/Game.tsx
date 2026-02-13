@@ -123,7 +123,6 @@ const Game: React.FC<GameProps> = ({ onGameOver, onDeliver, missionTimeout }) =>
   /* --------- Detect readiness ------------------------------------- */
   useEffect(() => {
     if (!ready && ripas >= 3 && globalOn) {
-      console.log('ready')
       setReady(true);
     }
   }, [ripas, ready, globalOn]);

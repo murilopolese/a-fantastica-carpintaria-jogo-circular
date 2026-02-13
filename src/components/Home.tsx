@@ -64,6 +64,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           <img src={patrocinio} className="sponsors" />
         </div>
       </div>
+
     </div>
   );
 };

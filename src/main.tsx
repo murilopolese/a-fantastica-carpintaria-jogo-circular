@@ -122,6 +122,7 @@ const App: React.FC = () => {
     setPage('game');
   }
 
+  
   return (
     <>
       {page === 'home' && <Home onNavigate={goToMission} />}
