@@ -1,13 +1,12 @@
 // src/main.tsx
 
-import { StrictMode, useEffect } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   HashRouter,
   Routes,
   Route,
-  useNavigate,
-  useLocation,
+  useNavigate
 } from 'react-router-dom';
 import './index.css';
 
@@ -87,8 +86,7 @@ const M: React.FC<MissionProps> = ({
 
 const App: React.FC = () => {
   const [currentTimeout, setCurrentTimeout] = useState(60*1000)
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const navigate = useNavigate();  
 
   const goToTutorial = () => navigate('/tutorial');
   const goToTutorial1 = () => navigate('/tutorial-1');
@@ -103,12 +101,6 @@ const App: React.FC = () => {
     setCurrentTimeout(prev => prev - 10000 )
     navigate('/jogo');
   }
-
-  useEffect(() => {
-    if (window.umami) {
-      window.umami.track(`hashroute ${pathname}`);
-    }
-  }, [pathname]);
 
   return (
     <Routes>
